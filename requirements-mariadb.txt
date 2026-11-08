@@ -1,0 +1,3 @@
+# Additional dependency for Person B. Keep A's requirements.txt unchanged.
+# Capture the exact laptop-tested version before final reproducibility sign-off.
+mariadb
