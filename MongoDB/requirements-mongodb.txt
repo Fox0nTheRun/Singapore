@@ -1,0 +1,3 @@
+# Candidate ranges for C's code; D/E must freeze a verified common environment.
+pymongo>=4.6,<5
+pytest>=8,<10

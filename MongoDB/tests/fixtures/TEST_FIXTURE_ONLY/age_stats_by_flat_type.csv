@@ -1,0 +1,3 @@
+survey_year,flat_type_code,average_age,median_age,dataset_id,source_file_sha256,source_row_number
+2018,4_ROOM,41.25,42.00,D03,3b0e0844a9210411026814bf356a5526de8f92c9bc7482a1497c4ee9f0139651,1
+2018,ALL,41.25,42.00,D03,3b0e0844a9210411026814bf356a5526de8f92c9bc7482a1497c4ee9f0139651,2
