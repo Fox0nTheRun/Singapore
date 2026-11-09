@@ -1,0 +1,153 @@
+{
+  "generated_at_utc": "2026-10-24T08:42:33.721752+00:00",
+  "datasets": [
+    {
+      "dataset_id": "D01",
+      "source_filename": "Resale flat prices based on registration date from Jan-2017 onwards.csv",
+      "source_sha256": "1af5137b8ea8ce39b45c1cac796377359fb315626fcff422371a854fe067265d",
+      "row_count": 240468,
+      "headers": [
+        "month",
+        "town",
+        "flat_type",
+        "block",
+        "street_name",
+        "storey_range",
+        "floor_area_sqm",
+        "flat_model",
+        "lease_commence_date",
+        "remaining_lease",
+        "resale_price"
+      ],
+      "source_url": null,
+      "metadata_status": "partial"
+    },
+    {
+      "dataset_id": "D02",
+      "source_filename": "Age of HDB Resident Population by Flat Type.csv",
+      "source_sha256": "76703160f94c4cf20aac4beee9de3b505edba5aa1aa99ee69a399a6c8b1e6c09",
+      "row_count": 63,
+      "headers": [
+        "shs_year",
+        "flat_type",
+        "age_group",
+        "percentage"
+      ],
+      "source_url": null,
+      "metadata_status": "partial"
+    },
+    {
+      "dataset_id": "D03",
+      "source_filename": "Average and Median Age of HDB Resident Population by Flat Type.csv",
+      "source_sha256": "df02fb469ff7a5793004636d80370a4f4a6a01c03116e3b4fc5fd1ebfc11ab23",
+      "row_count": 21,
+      "headers": [
+        "shs_year",
+        "flat_type",
+        "average_age",
+        "median_age"
+      ],
+      "source_url": null,
+      "metadata_status": "partial"
+    },
+    {
+      "dataset_id": "D04",
+      "source_filename": "HDB Resident Population Aged 15 Years and Above by Flat Type.csv",
+      "source_sha256": "506f0e7467f5a83180bcfcf23eae3d86a8fd6b1bb06716f0b0af9f3a4cf904a6",
+      "row_count": 18,
+      "headers": [
+        "shs_year",
+        "flat_type",
+        "number"
+      ],
+      "source_url": null,
+      "metadata_status": "partial"
+    },
+    {
+      "dataset_id": "D05",
+      "source_filename": "Age of HDB Resident Population by Ethnic Group.csv",
+      "source_sha256": "c6d9ea399fe3de82058b421d77b3a3486f5906794bd11d31e8e805ae9c29ec20",
+      "row_count": 45,
+      "headers": [
+        "shs_year",
+        "ethnic_group",
+        "age_group",
+        "percentage"
+      ],
+      "source_url": null,
+      "metadata_status": "partial"
+    },
+    {
+      "dataset_id": "D06",
+      "source_filename": "Average and Median Age of HDB Population by Ethnic Group.csv",
+      "source_sha256": "97ab832982fa38e140be07a8fb015cdadb0c3f177d486213edac2607b94198d9",
+      "row_count": 15,
+      "headers": [
+        "shs_year",
+        "ethnic_group",
+        "average_age",
+        "median_age"
+      ],
+      "source_url": null,
+      "metadata_status": "partial"
+    },
+    {
+      "dataset_id": "D07",
+      "source_filename": "HDB Resident Population Aged 15 Years and Above by Ethnic Group.csv",
+      "source_sha256": "468774fecbe508de622a9792aa89a819e25762ec5ed6f2ec11480bf35fa7bdf9",
+      "row_count": 12,
+      "headers": [
+        "shs_year",
+        "ethnic_group",
+        "number"
+      ],
+      "source_url": null,
+      "metadata_status": "partial"
+    },
+    {
+      "dataset_id": "D08",
+      "source_filename": "EmployedResidentsAged15YearsandOverbyPlanningAreaofWorkplaceUsu.csv",
+      "source_sha256": "5a2fa157e0dc8d7df17813f0a1baab2be68f9985ed2e0c9badef761aaba33735",
+      "row_count": 48,
+      "headers": [
+        "Number",
+        "Total_Total",
+        "Total_ModeofTransport_CombinationsofRail_MRT_LRT_orPublicBus",
+        "Total_ModeofTransport_CarorTaxi_PrivateHireCarOnly",
+        "Total_ModeofTransport_OtherModes",
+        "Total_ModeofTransport_NoTransportRequired",
+        "CentralRegion_Total",
+        "CentralRegion_ModeofTransport_CombinationsofRail_MRT_LRT_orPubl",
+        "CentralRegion_ModeofTransport_CarorTaxi_PrivateHireCarOnly",
+        "CentralRegion_ModeofTransport_OtherModes",
+        "CentralRegion_ModeofTransport_NoTransportRequired",
+        "EastRegion_Total",
+        "EastRegion_ModeofTransport_CombinationsofRail_MRT_LRT_orPublicB",
+        "EastRegion_ModeofTransport_CarorTaxi_PrivateHireCarOnly",
+        "EastRegion_ModeofTransport_OtherModes",
+        "EastRegion_ModeofTransport_NoTransportRequired",
+        "NorthRegion_Total",
+        "NorthRegion_ModeofTransport_CombinationsofRail_MRT_LRT_orPublic",
+        "NorthRegion_ModeofTransport_CarorTaxi_PrivateHireCarOnly",
+        "NorthRegion_ModeofTransport_OtherModes",
+        "NorthRegion_ModeofTransport_NoTransportRequired",
+        "North_EastRegion_Total",
+        "North_EastRegion_ModeofTransport_CombinationsofRail_MRT_LRT_orP",
+        "North_EastRegion_ModeofTransport_CarorTaxi_PrivateHireCarOnly",
+        "North_EastRegion_ModeofTransport_OtherModes",
+        "North_EastRegion_ModeofTransport_NoTransportRequired",
+        "WestRegion_Total",
+        "WestRegion_ModeofTransport_CombinationsofRail_MRT_LRT_orPublicB",
+        "WestRegion_ModeofTransport_CarorTaxi_PrivateHireCarOnly",
+        "WestRegion_ModeofTransport_OtherModes",
+        "WestRegion_ModeofTransport_NoTransportRequired"
+      ],
+      "source_url": null,
+      "metadata_status": "partial"
+    }
+  ],
+  "summary": {
+    "datasets_expected": 8,
+    "datasets_found": 8
+  }
+}
