@@ -1,0 +1,208 @@
+# HDB Insights: setup guide for a new teammate
+
+## Before starting
+
+You need the integrated application package and the team’s data package. The application package should contain the app, both database adapters, MariaDB SQL and loader files, MongoDB setup scripts, and `requirements-app.txt`. The data package should contain the original source files and prepared release.
+
+**Packaging check:** the current `Application -BILL` folder contains the app, both adapters, and data preparation code, but not the MariaDB SQL/loader files, MongoDB setup scripts, or the root-level raw and prepared data folders. Add the SQL and scripts to the application ZIP, or provide them in a companion setup package. Share the raw and prepared data package separately. Do not include `.venv`, credentials, database server files, or Python caches in the ZIP.
+
+## 1. Extract the files
+
+Extract the application package to a simple path such as:
+
+```text
+C:\hdb-insights
+```
+
+The project root should contain `app.py`, `src`, `scripts`, `sql`, and `requirements-app.txt`. Place the raw source files in:
+
+```text
+C:\hdb-insights\data\raw\
+```
+
+Place the prepared release in:
+
+```text
+C:\hdb-insights\data\processed\150921447b27_c1.0.0_t0.1.2\
+```
+
+The prepared release folder must include `manifest.json` and all eight prepared CSVs. Preserve filenames and file contents. The loaders verify the files. Don’t import the Excel or CSV files manually through a database GUI.
+
+## 2. Install and start MariaDB and MongoDB
+
+Install MariaDB Server and MongoDB Server on the teammate’s machine. MongoDB Compass is a client; the MongoDB Server must also be installed and running.
+
+In PowerShell, check the Windows services:
+
+```powershell
+Get-Service *MariaDB*
+Get-Service *Mongo*
+```
+
+If a service is stopped, start it using the service name shown in the results. For example:
+
+```powershell
+Start-Service -Name MariaDB
+Start-Service -Name MongoDB
+```
+
+Service names can differ by installation. CR recorded MariaDB 12.3.3 on port 3306, but each teammate should record their own installed server versions. Use the Python version agreed by the team; the handover packages report different Python versions, so a single tested team version has not yet been established.
+
+## 3. Create MariaDB databases and accounts
+
+Connect to MariaDB as an administrator:
+
+```powershell
+mariadb -u root -p
+```
+
+At the `MariaDB>` prompt, create the databases and accounts. Replace both password placeholders with locally chosen passwords **before running the SQL**:
+
+```sql
+CREATE DATABASE hdb_insights CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+CREATE DATABASE hdb_insights_demo CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+
+CREATE USER 'hdb_dev'@'localhost' IDENTIFIED BY 'TheBoyz';
+CREATE USER 'hdb_app'@'localhost' IDENTIFIED BY 'TheBoyz';
+
+GRANT ALL PRIVILEGES ON hdb_insights.* TO 'hdb_dev'@'localhost';
+GRANT ALL PRIVILEGES ON hdb_insights_demo.* TO 'hdb_dev'@'localhost';
+```
+
+Keep these passwords out of the ZIP and repository. The loader will prompt for the `hdb_dev` password. The app will use the `hdb_app` password.
+
+## 4. Create the MariaDB analytical tables
+
+At the same MariaDB prompt, run SQL scripts `01` through `06` in order. These example paths assume the project is in `C:\hdb-insights`:
+
+```sql
+SOURCE C:/hdb-insights/sql/01_reference_tables.sql;
+SOURCE C:/hdb-insights/sql/02_category_tables.sql;
+SOURCE C:/hdb-insights/sql/03_resale_table.sql;
+SOURCE C:/hdb-insights/sql/04_flat_type_demographics.sql;
+SOURCE C:/hdb-insights/sql/05_ethnicity_demographics.sql;
+SOURCE C:/hdb-insights/sql/06_mobility_and_metadata.sql;
+```
+
+If a script reports that a table already exists, stop and inspect the database. These are one-time setup scripts; don’t rerun them after ordinary code updates.
+
+## 5. Create the Python environment and load MariaDB
+
+Exit MariaDB:
+
+```sql
+EXIT;
+```
+
+In PowerShell:
+
+```powershell
+Set-Location -LiteralPath 'C:\hdb-insights'
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r .\requirements-app.txt
+```
+
+Run the initial MariaDB loader:
+
+```powershell
+python .\load_mariadb.py
+```
+
+Enter the local `hdb_dev` password when prompted. The loader checks the raw files, prepared files, and database tables. It requires empty analytical tables and commits the release only after its checks pass. **Do not run it against an already populated database.**
+
+## 6. Set up MariaDB demo data and app permissions
+
+Connect to MariaDB again as an administrator. Run:
+
+```sql
+SOURCE C:/hdb-insights/sql/16_demo_reference_tables.sql;
+SOURCE C:/hdb-insights/sql/17_demo_resale_table.sql;
+SOURCE C:/hdb-insights/sql/18_demo_seed_data.sql;
+```
+
+Check that the results show **26 towns, 7 flat types, 10 matching seed rows, and 0 demo transactions**. If they match, run `COMMIT;` in that same MariaDB session. If they do not match, run `ROLLBACK;` and stop.
+
+Then apply the demo protections and app permissions:
+
+```sql
+SOURCE C:/hdb-insights/sql/19_demo_lineage_protection.sql;
+SOURCE C:/hdb-insights/sql/24_application_permissions.sql;
+```
+
+Run script `24` as `root` or another authorized administrator. The application uses `hdb_app`; don’t use the more privileged `hdb_dev` account for the app.
+
+## 7. Set up and load MongoDB
+
+In PowerShell, from the project root, use the local MongoDB defaults:
+
+```powershell
+Set-Location -LiteralPath 'C:\hdb-insights'
+$env:MONGODB_URI = 'mongodb://127.0.0.1:27017/'
+$env:MONGODB_DATABASE = 'hdb_insights'
+```
+
+Create the missing analytical collections and the demo collection:
+
+```powershell
+python .\scripts\setup_mongodb.py --create-missing --create-demo
+```
+
+Check the connection:
+
+```powershell
+python .\scripts\check_mongodb.py
+```
+
+Validate the prepared release without writing to MongoDB:
+
+```powershell
+python .\scripts\load_mongodb.py --release-dir "data/processed/150921447b27_c1.0.0_t0.1.2" --dry-run
+```
+
+Proceed only if preflight succeeds. For a new database, publish the release while the application is stopped:
+
+```powershell
+python .\scripts\load_mongodb.py --release-dir "data/processed/150921447b27_c1.0.0_t0.1.2" --publish --maintenance-confirmed
+```
+
+Keep the recovery journal the loader creates. Do not run load, publish, recovery, or reset commands against a populated database without coordinating with the database owner. Isaac’s recorded MongoDB load is historical evidence from his machine, not proof that a teammate’s server is loaded.
+
+## 8. Configure and start the application
+
+In the same PowerShell window, configure the local MariaDB app account:
+
+```powershell
+$env:MARIADB_HOST = '127.0.0.1'
+$env:MARIADB_PORT = '3306'
+$env:MARIADB_USER = 'hdb_app'
+$env:MARIADB_DATABASE = 'hdb_insights'
+$env:MARIADB_PASSWORD = 'TheBoyz'
+$env:MONGODB_URI = "mongodb://127.0.0.1:27017/"
+$env:MONGODB_DATABASE = "hdb_insights"
+```
+
+Replace the placeholder with the password chosen in step 3. The environment variable is local to this PowerShell window. Keep the window open and start the app:
+
+```powershell
+python -m streamlit run .\app.py
+```
+
+Open the local URL Streamlit prints, usually `http://localhost:8501`. Both backends need the same active contract and release (`HDBI-1.0.0` and `150921447b27_c1.0.0_t0.1.2`) for the comparison page to work.
+
+## 9. Verify the setup
+
+From the project root, run the app and data checks:
+
+```powershell
+python -m pytest -q tests\test_person_d.py
+python .\scripts\check_adapter_contracts.py
+python .\scripts\verify_prepared_release.py
+python .\verify_mariadb_release.py
+python .\scripts\check_mongodb.py
+python .\scripts\smoke_mongodb.py
+```
+
+The MariaDB verifier requires both the original raw files and the prepared release, and prompts for the `hdb_app` password. The MongoDB smoke script is read-only unless explicitly run with `--demo-crud`.
+
+Finally, test each backend in the app: overview, resale, demographics, mobility, comparison, and demo create/read/update/delete. Delete only the test demo record and confirm the analytical resale row count is unchanged. Record the Python, MariaDB, MongoDB, and connector versions and the actual verification results. Confirm the team’s remaining shared decisions on dropdown options, missing mobility behavior, and demo seed selection before calling the integration complete.
