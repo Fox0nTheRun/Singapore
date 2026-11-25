@@ -180,6 +180,7 @@ $env:MARIADB_DATABASE = 'hdb_insights'
 $env:MARIADB_PASSWORD = 'TheBoyz'
 $env:MONGODB_URI = "mongodb://127.0.0.1:27017/"
 $env:MONGODB_DATABASE = "hdb_insights"
+python -m streamlit run .\app.py
 ```
 
 Replace the placeholder with the password chosen in step 3. The environment variable is local to this PowerShell window. Keep the window open and start the app:
