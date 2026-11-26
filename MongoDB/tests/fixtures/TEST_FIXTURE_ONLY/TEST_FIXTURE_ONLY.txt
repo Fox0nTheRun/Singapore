@@ -1,1 +1,0 @@
-Synthetic engineering fixtures. Hashes identify fixture labels, not supplied raw HDB files. Not for analytical publication.

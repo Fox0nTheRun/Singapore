@@ -1,7 +1,0 @@
-requirement_id,function_id,dataset_ids,component,artifact_id,artifact_path,owner,contract_ids,test_ids,evidence_paths,status,notes
-R02,F01-F04,D01-D08,Raw source profiler,A-01,src/hdb_insights/data/profile_sources.py,A,C01;C02,T-A-01,docs/evidence/A/profile/source_profile.json,VERIFIED,All eight source files found; raw hashes match briefing fingerprints
-R02;R06,F01,D01,Resale cleaner,A-03,src/hdb_insights/data/clean_resale.py,A,C01,T-A-02;T-A-03;T-A-04,docs/evidence/A/release/pipeline_report.json,VERIFIED,240468 source rows retained with stable source-row IDs
-R02;R06,F02,D02-D07,Demographic cleaners,A-03,src/hdb_insights/data/clean_demographics.py,A,C01,T-A-05,docs/evidence/A/release/pipeline_report.json,VERIFIED,All six tables preserved at source row counts; percentage-sum caveats recorded
-R02;R06,F03,D08,Mobility reshape,A-03,src/hdb_insights/data/clean_mobility.py,A,C01,T-A-06;T-A-07,docs/evidence/A/release/pipeline_report.json,VERIFIED,1440 cells reshaped losslessly; 73 dash tokens preserved as unresolved nulls
-R02;R09,F01-F04,D01-D08,Release pipeline,A-05,src/hdb_insights/data/pipeline.py,A,C01;C02,T-A-08;T-A-09,docs/evidence/A/release/pipeline_report.json,VERIFIED_WITH_WARNINGS,Prepared release produced locally; DB loaders and cross-member integration pending
-R06;R07,F01-F04,D01-D08,Control results,A-06,src/hdb_insights/data/control_totals.py,A,C01;C05,T-A-10,docs/evidence/A/controls/control_totals.json,VERIFIED,Controls are independently computed from prepared CSVs, not database results
