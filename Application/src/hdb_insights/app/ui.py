@@ -1,8 +1,3 @@
-"""Streamlit frontend for INF2003 HDB Insights (Person D, Team 55).
-
-Uses live MariaDB/MongoDB adapters only. Streamlit is not an analytics engine:
-all filters, aggregation, and CRUD are delegated to the DB-owned repositories.
-"""
 from __future__ import annotations
 
 from decimal import Decimal
@@ -49,7 +44,7 @@ def _problem(result: dict) -> bool:
 def _options(backend: str, domain: str):
     result = call(backend, "list_filter_options", domain)
     if _problem(result):
-        st.info("This view needs a connected database with a published release. See SETUP_PERSON_D.md.")
+        st.info("This view needs a connected database with a published release.")
         st.stop()
     try:
         return unpack_options(result, domain)
@@ -393,7 +388,7 @@ def about_page(backend: str):
         st.success(f"{backend.title()} is connected to a compatible active release.")
     else:
         _problem(result)
-        st.info("If you have not configured local databases, follow SETUP_PERSON_D.md before testing connected pages.")
+        st.info("you have not configured local database")
     _release_caption(result)
     st.subheader("Team 55 implementation layers")
     st.dataframe([
