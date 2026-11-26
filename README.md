@@ -1,5 +1,4 @@
 <<<<<<< Updated upstream
-yoyo
 =======
 # HDB Insights setup guide
 
