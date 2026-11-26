@@ -38,7 +38,7 @@ Test-Path (Join-Path $APPLICATION_PATH 'app.py')
 Test-Path (Join-Path $DATA_PATH 'data\raw')
 Test-Path (Join-Path $RELEASE_PATH 'manifest.json')
 Test-Path (Join-Path $MARIADB_PATH 'load_mariadb.py')
-Test-Path (Join-Path $MARIADB_PATH 'requirements-mariadb.txt')
+Test-Path (Join-Path $MARIADB_PATH 'requirements.txt')
 Test-Path (Join-Path $MONGODB_PATH 'scripts\setup_mongodb.py')
 ```
 
