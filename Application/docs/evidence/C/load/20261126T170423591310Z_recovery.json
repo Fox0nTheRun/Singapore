@@ -1,0 +1,74 @@
+{
+  "journal_version": 1,
+  "database_name": "hdb_insights",
+  "run_id": "f395f88fdfaa",
+  "phase": "committed",
+  "old_metadata": null,
+  "new_release": "150921447b27_c1.0.0_t0.1.2",
+  "candidate_names": {
+    "source_datasets": "_c_f395f88fdfaa_source_datasets",
+    "resale_transactions": "_c_f395f88fdfaa_resale_transactions",
+    "demographic_profiles": "_c_f395f88fdfaa_demographic_profiles",
+    "mobility_profiles": "_c_f395f88fdfaa_mobility_profiles"
+  },
+  "candidate_uuids": {
+    "source_datasets": {
+      "$binary": {
+        "base64": "0BFJwW6RQj272pKa7xUTYQ==",
+        "subType": "04"
+      }
+    },
+    "resale_transactions": {
+      "$binary": {
+        "base64": "DoaE3ZyYS3K0+s1P8jLtCw==",
+        "subType": "04"
+      }
+    },
+    "demographic_profiles": {
+      "$binary": {
+        "base64": "AlqHlW28R1iOF/gyAXhhHQ==",
+        "subType": "04"
+      }
+    },
+    "mobility_profiles": {
+      "$binary": {
+        "base64": "Wbi86hKUQgu4beweQw8o2w==",
+        "subType": "04"
+      }
+    }
+  },
+  "backup_names": {
+    "source_datasets": "_b_f395f88fdfaa_source_datasets",
+    "resale_transactions": "_b_f395f88fdfaa_resale_transactions",
+    "demographic_profiles": "_b_f395f88fdfaa_demographic_profiles",
+    "mobility_profiles": "_b_f395f88fdfaa_mobility_profiles"
+  },
+  "old_uuids": {
+    "source_datasets": {
+      "$binary": {
+        "base64": "5Kelnba3SyeYM2MJ7891Rw==",
+        "subType": "04"
+      }
+    },
+    "resale_transactions": {
+      "$binary": {
+        "base64": "SWD2ii/NQxiWp5JDvP3CUg==",
+        "subType": "04"
+      }
+    },
+    "demographic_profiles": {
+      "$binary": {
+        "base64": "hKNdIOXjQc+u01fdsMOUOA==",
+        "subType": "04"
+      }
+    },
+    "mobility_profiles": {
+      "$binary": {
+        "base64": "RLHpfesmTvuPkWgeG7lYsQ==",
+        "subType": "04"
+      }
+    }
+  },
+  "metadata_backup": "_b_f395f88fdfaa_application_metadata",
+  "last_completed": "mobility_profiles"
+}

@@ -1,0 +1,3 @@
+survey_year,ethnic_group_code,average_age,median_age,dataset_id,source_file_sha256,source_row_number
+2018,CHINESE,41.25,42.00,D06,af299fb9568a73b1e0cbbf77360b2b9ec4656f4e5f95fdec8a2fb22e6d0e0fa8,1
+2018,ALL,41.25,42.00,D06,af299fb9568a73b1e0cbbf77360b2b9ec4656f4e5f95fdec8a2fb22e6d0e0fa8,2
