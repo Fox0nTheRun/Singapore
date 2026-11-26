@@ -244,4 +244,3 @@ Set-Location -LiteralPath $APPLICATION_PATH
 The MariaDB verifier needs both the original raw files and the prepared release, and may prompt for a database password. The MongoDB smoke check is read-only unless explicitly given `--demo-crud`.
 
 Finally, open each backend in the app and check overview, resale, demographics, mobility, comparison, and demo create/read/update/delete. Use only the demo area for CRUD; after deleting a test demo record, confirm the analytical resale row count has not changed. Record the Python, MariaDB, MongoDB, and connector versions and the actual results from this computer. Confirm any remaining team decisions about dropdown options, missing mobility behavior, and demo seed selection before calling the setup complete.
->>>>>>> Stashed changes
