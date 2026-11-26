@@ -1,4 +1,3 @@
-=======
 # HDB Insights setup guide
 
 This guide uses four separate folders: `Application`, `Data`, `MariaDB`, and `MongoDB`. Replace the example placeholders with the full locations on your computer. Do not type the angle brackets around a placeholder.
