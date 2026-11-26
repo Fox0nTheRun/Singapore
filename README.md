@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 =======
 # HDB Insights setup guide
 
